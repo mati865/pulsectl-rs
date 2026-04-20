@@ -85,3 +85,17 @@ jobs:
       - uses: Swatinem/rust-cache@v2
       - name: Test
         run: cargo test --workspace
+
+  msrv:
+    name: Check MSRV
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Check
+        run: cargo check --workspace
